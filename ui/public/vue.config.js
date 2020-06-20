@@ -5,7 +5,7 @@ module.exports = {
   devServer: {
     proxy: {
       "^/publish": {
-        target: "https://europe-west1-git-diary.cloudfunctions.net/PublishEntry",
+        target: "https://us-central1-git-diary.cloudfunctions.net/PublishEntry",
       },
     },
   },
