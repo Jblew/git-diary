@@ -7,16 +7,10 @@
       "path": "../functions"
     },
     {
-      "path": "../iot"
+      "path": "../ui"
     },
     {
-      "path": "../firmware"
-    },
-    {
-      "path": "../panel"
-    },
-    {
-      "path": "../panel/public"
+      "path": "../ui/public"
     }
   ],
   "settings": {
