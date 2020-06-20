@@ -22,6 +22,7 @@ gcloud config set project ${GCP_PROJECT_ID}
 
 gcloud services enable cloudfunctions.googleapis.com
 gcloud functions deploy PublishEntry \
+  --allow-unauthenticated \
   --trigger-http \
   --region "${GCP_FUNCTIONS_REGION}" \
   --runtime go113 \
