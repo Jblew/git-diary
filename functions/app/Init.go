@@ -14,11 +14,17 @@ func Init(config Config) (*App, error) {
 
 	firebase, err := firebase.NewApp(ctx, conf)
 	if err != nil {
-		return nil, fmt.Errorf("firebase.NewApp: %v", err)
+		return nil, fmt.Errorf("Cannot initialize firebase.NewApp: %v", err)
+	}
+
+	firebaseAuth, err := firebase.Auth(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("Cannot initialize firebase.Auth: %v", err)
 	}
 
 	return &App{
-		Firebase: firebase,
-		Context:  ctx,
+		Firebase:     firebase,
+		FirebaseAuth: firebaseAuth,
+		Context:      ctx,
 	}, nil
 }
