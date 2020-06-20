@@ -22,6 +22,7 @@ gcloud config set project ${GCP_PROJECT_ID}
 
 gcloud functions deploy PublishEntry \
   --trigger-http \
+  --allow-unauthenticated \
   --region "${GCP_PROJECT_REGION}" \
   --runtime go113 \
   --memory "1024MB"
