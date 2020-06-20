@@ -20,6 +20,7 @@ fi
 
 gcloud config set project ${GCP_PROJECT_ID}
 
+gcloud services enable cloudfunctions.googleapis.com
 gcloud functions deploy PublishEntry \
   --trigger-http \
   --allow-unauthenticated \
