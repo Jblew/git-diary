@@ -6,7 +6,7 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Inject } from 'vue-property-decorator';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 import { projectConfig } from '@/config';
@@ -26,7 +26,7 @@ export default class LoginPage extends Vue {
   private initializeFirebaseUI() {
     let ui = firebaseui.auth.AuthUI.getInstance();
     if (!ui) {
-      ui = new firebaseui.auth.AuthUI(firebase.auth());
+      ui = new firebaseui.auth.AuthUI(this.firebase.auth());
     }
     const uiConfig = {
       signInSuccessUrl: '/',
