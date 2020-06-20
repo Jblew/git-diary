@@ -25,6 +25,10 @@ func Init(config Config) (*App, error) {
 
 	pusherConfig := gitpusher.Config{
 		RepositoryURL: config.RepositoryURL,
+		Branch:        config.BranchName,
+		CommitName:    config.CommitName,
+		CommitEmail:   config.CommitEmail,
+		CommitMessage: config.CommitMessage,
 	}
 	gitPusher, err := gitpusher.New(pusherConfig)
 	if err != nil {
