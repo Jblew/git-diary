@@ -2,6 +2,10 @@
   <div>
     <h1>Welcome {{ user.displayName }}</h1>
     <router-link to="/logout">Log out</router-link>
+    <hr />
+    <pre>
+      {{ fetchResponse }}
+    </pre>
   </div>
 </template>
 <script lang="ts">
@@ -15,7 +19,25 @@ export default class HomePage extends Vue {
   @Inject()
   public readonly firebase!: firebase.app.App;
 
+  public fetchResponse: string = '';
+
   public user: firebase.User = this.firebase.auth().currentUser!;
+
+  // tslint:disable no-console
+  public mounted() {
+    this.fetchResponse = 'Loading...';
+    fetch('https://europe-west1-git-diary.cloudfunctions.net/PublishEntry')
+      .then(
+        (resp) => {
+          console.log(resp);
+          this.fetchResponse = 'Done.';
+        },
+        (err) => {
+          console.error(err);
+          this.fetchResponse = 'Error: ' + err.message;
+        },
+      );
+  }
 }
 </script>
 
