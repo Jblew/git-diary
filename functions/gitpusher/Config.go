@@ -4,5 +4,7 @@ package gitpusher
 type Config struct {
 	RepositoryURL string
 	Branch        string
-	TmpDirPath    string
+	CommitName    string
+	CommitEmail   string
+	CommitMessage string
 }
