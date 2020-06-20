@@ -16,7 +16,10 @@ if [ -z "${GCP_FUNCTIONS_REGION}" ]; then
 fi
 
 
+# Populate config
 ./generate-config.sh
+# Test the build
+go build *.go
 
 gcloud config set project ${GCP_PROJECT_ID}
 
