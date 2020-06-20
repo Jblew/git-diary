@@ -2,6 +2,7 @@ package functions
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/Jblew/git-diary/functions/gitpusher"
@@ -42,6 +43,8 @@ func verify(w http.ResponseWriter, r *http.Request) error {
 		return fmt.Errorf("User '%s' is not alowed", userData.Email)
 	}
 
+	log.Printf("User verified as %s\n", userData.Email)
+
 	return nil
 }
 
@@ -51,6 +54,8 @@ func pushEntroToRepo(w http.ResponseWriter, r *http.Request) (string, error) {
 		return "", fmt.Errorf("Cannot fetch main branch: %v", err)
 	}
 
+	log.Println("Repository fetch successfull")
+
 	err = application.GitPusher.AmendFile(gitpusher.AmendFileParams{
 		Path:          application.Config.DiaryFilePath,
 		Amendment:     "\n\n## test",
@@ -59,6 +64,7 @@ func pushEntroToRepo(w http.ResponseWriter, r *http.Request) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("Cannot amend to branch: %v", err)
 	}
+	log.Println("Repository file amended")
 
 	return application.GitPusher.ReadFile(application.Config.DiaryFilePath)
 }
