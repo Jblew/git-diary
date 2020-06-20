@@ -1,3 +1,7 @@
-export const projectConfig = {
+import firebase from 'firebase';
 
-} as const;
+export const projectConfig = {
+  firebaseAuth: {
+    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
+  },
+};
