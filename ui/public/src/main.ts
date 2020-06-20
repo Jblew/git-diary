@@ -6,6 +6,7 @@ import { LoginPage, LogoutPage, installFirebaseAuthHooksToVueRouter } from '@/fe
 import VueRouter from 'vue-router';
 import 'firebase/app';
 import 'firebase/auth';
+import 'firebase/functions';
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);

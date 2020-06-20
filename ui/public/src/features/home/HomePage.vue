@@ -10,6 +10,7 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Inject } from 'vue-property-decorator';
+import { functions } from 'firebase';
 
 @Component({
   components: {
@@ -26,7 +27,7 @@ export default class HomePage extends Vue {
   // tslint:disable no-console
   public mounted() {
     this.fetchResponse = 'Loading...';
-    fetch('/publish')
+    this.firebase.functions().httpsCallable('PublishEntry')()
       .then(
         (resp) => {
           console.log(resp);
