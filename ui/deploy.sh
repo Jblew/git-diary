@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "${DIR}"
+set -e
 
-nvm use v12
 npm install -g firebase-tools
 npm --prefix="public" install
 npm --prefix="public" run build
