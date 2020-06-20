@@ -5,6 +5,7 @@ import (
 
 	firebase "firebase.google.com/go"
 	firebaseAuth "firebase.google.com/go/auth"
+	"github.com/Jblew/git-diary/functions/gitpusher"
 )
 
 // App is main class for functions
@@ -13,4 +14,5 @@ type App struct {
 	FirebaseAuth *firebaseAuth.Client
 	Context      context.Context
 	Config       Config
+	GitPusher    *gitpusher.GitPusher
 }

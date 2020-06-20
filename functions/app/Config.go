@@ -4,4 +4,5 @@ package app
 type Config struct {
 	ProjectID         string
 	AllowedUserEmails string
+	RepositoryURL     string
 }
