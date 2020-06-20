@@ -1,7 +1,6 @@
 package gitpusher
 
 import (
-	"github.com/go-git/go-billy/v5"
 	"github.com/go-git/go-git/v5"
 )
 
@@ -10,5 +9,4 @@ type GitPusher struct {
 	Config   Config
 	repo     *git.Repository
 	worktree *git.Worktree
-	fs       billy.Filesystem
 }

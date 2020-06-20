@@ -11,7 +11,7 @@ func (gitpusher *GitPusher) ReadFile(path string) (string, error) {
 		return "", err
 	}
 
-	file, err := gitpusher.fs.Open(path) // Default is READONLY
+	file, err := gitpusher.worktree.Filesystem.Open(path) // Default is READONLY
 	if err != nil {
 		return "", err
 	}

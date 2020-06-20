@@ -3,7 +3,7 @@ package gitpusher
 import "os"
 
 func (gitpusher *GitPusher) fileExists(path string) (bool, error) {
-	_, err := gitpusher.fs.Stat(path)
+	_, err := gitpusher.worktree.Filesystem.Stat(path)
 	if err == nil {
 		return true, nil
 	} else if os.IsNotExist(err) {

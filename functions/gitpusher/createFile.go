@@ -11,7 +11,7 @@ func (gitpusher *GitPusher) createFileIfNotExists(path string) error {
 }
 
 func (gitpusher *GitPusher) createFile(path string) error {
-	_, err := gitpusher.fs.Create(path)
+	_, err := gitpusher.worktree.Filesystem.Create(path)
 	if err != nil {
 		return err
 	}
