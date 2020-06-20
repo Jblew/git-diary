@@ -1,9 +1,6 @@
 <template>
-  <div>
-
-  </div>
+  <h1>Home page</h1>
 </template>
-
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
@@ -11,7 +8,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
   components: {
   },
 })
-export default class MainPanel extends Vue {
+export default class LoginPage extends Vue {
 }
 </script>
 
