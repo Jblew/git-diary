@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/go-git/go-billy/v5/memfs"
 	"github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing/transport/http"
 	"github.com/go-git/go-git/v5/storage/memory"
@@ -39,9 +38,7 @@ func (gitpusher *GitPusher) doClone() (*git.Repository, error) {
 	// Clones the given repository in memory, creating the remote, the local
 	// branches and fetching the objects, exactly as:
 
-	fs := memfs.New()
-
-	repo, err := git.Clone(memory.NewStorage(), fs, &git.CloneOptions{
+	repo, err := git.Clone(memory.NewStorage(), nil, &git.CloneOptions{
 		URL:  gitpusher.Config.RepositoryURL,
 		Auth: gitpusher.getCloneAuth(),
 	})
