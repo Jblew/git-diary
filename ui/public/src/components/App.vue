@@ -1,16 +1,14 @@
 <template>
   <div id="app">
-    <MainPanel />
+    <router-view></router-view>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import MainPanel from './components/MainPanel.vue';
 
 @Component({
   components: {
-    MainPanel,
   },
 })
 export default class App extends Vue { }

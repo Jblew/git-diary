@@ -10,7 +10,7 @@ const FIREBASE_CONFIG = {
   projectId: 'git-diary',
   storageBucket: 'git-diary.appspot.com',
   messagingSenderId: '277824411111',
-  appId: '1:277824411111:web:b8c6101cd84fa830535942'
+  appId: '1:277824411111:web:b8c6101cd84fa830535942',
 };
 
 export function constructFirebaseApp() {
