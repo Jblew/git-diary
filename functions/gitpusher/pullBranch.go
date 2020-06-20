@@ -23,6 +23,7 @@ func (gitpusher *GitPusher) pullBranch(branchName string) error {
 	err = gitpusher.worktree.Pull(&git.PullOptions{
 		RemoteName: "origin",
 		Force:      true,
+		Auth:       gitpusher.getRepoAuth(),
 	})
 	log.Println("Pull done")
 

@@ -6,7 +6,9 @@ import (
 
 // AmendFile appends to file and commits the changes
 func (gitpusher *GitPusher) push() error {
-	err := gitpusher.repo.Push(&git.PushOptions{})
+	err := gitpusher.repo.Push(&git.PushOptions{
+		Auth: gitpusher.getRepoAuth(),
+	})
 	if err != nil {
 		return err
 	}

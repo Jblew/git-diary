@@ -6,7 +6,6 @@ import (
 
 	"github.com/go-git/go-billy/v5/memfs"
 	"github.com/go-git/go-git/v5"
-	"github.com/go-git/go-git/v5/plumbing/transport/http"
 	"github.com/go-git/go-git/v5/storage/memory"
 )
 
@@ -42,17 +41,10 @@ func (gitpusher *GitPusher) doClone() (*git.Repository, error) {
 	fs := memfs.New()
 	repo, err := git.Clone(memory.NewStorage(), fs, &git.CloneOptions{
 		URL:  gitpusher.Config.RepositoryURL,
-		Auth: gitpusher.getCloneAuth(),
+		Auth: gitpusher.getRepoAuth(),
 	})
 	if err != nil {
 		return nil, fmt.Errorf("Cannot clone: %v", err)
 	}
 	return repo, nil
-}
-
-func (gitpusher *GitPusher) getCloneAuth() *http.BasicAuth {
-	return &http.BasicAuth{
-		Username: gitpusher.Config.AuthUsername,
-		Password: gitpusher.Config.AuthPassword,
-	}
 }
