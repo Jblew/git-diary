@@ -14,6 +14,11 @@ func (gitpusher *GitPusher) FetchMain() error {
 	}
 	log.Println("Executed cloneIfNeeded")
 
+	err = gitpusher.cleanWorktree()
+	if err != nil {
+		return err
+	}
+
 	log.Println("Pulling branch")
 	err = gitpusher.pullBranch(gitpusher.Config.Branch)
 	if err != nil {
