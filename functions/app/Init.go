@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	firebase "firebase.google.com/go"
-	"github.com/Jblew/git-diary/functions/gitpusher"
 )
 
 // Init initializes the app
@@ -23,25 +22,17 @@ func Init(config Config) (*App, error) {
 		return nil, fmt.Errorf("Cannot initialize firebase.Auth: %v", err)
 	}
 
-	pusherConfig := gitpusher.Config{
-		RepositoryURL: config.RepositoryURL,
-		Branch:        config.BranchName,
-		CommitName:    config.CommitName,
-		CommitEmail:   config.CommitEmail,
-		CommitMessage: config.CommitMessage,
-		AuthUsername:  config.GitBasicAuthUsername,
-		AuthPassword:  config.GitBasicAuthPassword,
-	}
-	gitPusher, err := gitpusher.New(pusherConfig)
-	if err != nil {
-		return nil, fmt.Errorf("Cannot initialize GitPusher: %v", err)
-	}
-
-	return &App{
+	app := &App{
 		Firebase:     firebase,
 		FirebaseAuth: firebaseAuth,
 		Context:      ctx,
 		Config:       config,
-		GitPusher:    gitPusher,
-	}, nil
+	}
+
+	err = app.ResetPusher()
+	if err != nil {
+		return nil, err
+	}
+
+	return app, nil
 }
