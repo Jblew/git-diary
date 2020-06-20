@@ -28,7 +28,7 @@ func handlePublishEntry(w http.ResponseWriter, r *http.Request) (string, error) 
 		return "", err
 	}
 
-	out, err := pushEntroToRepo(w, r)
+	out, err := pushEntryToRepo(w, r)
 	if err != nil {
 		return "", err
 	}
@@ -50,7 +50,7 @@ func verify(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
-func pushEntroToRepo(w http.ResponseWriter, r *http.Request) (string, error) {
+func pushEntryToRepo(w http.ResponseWriter, r *http.Request) (string, error) {
 	err := application.GitPusher.FetchMain()
 	if err != nil {
 		return "", fmt.Errorf("Cannot fetch main branch: %v", err)

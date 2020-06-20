@@ -6,7 +6,7 @@ import (
 )
 
 func (gitpusher *GitPusher) appendToFile(path string, append string) error {
-	file, err := gitpusher.worktree.Filesystem.OpenFile(path, os.O_WRONLY, os.ModeAppend.Perm())
+	file, err := gitpusher.worktree.Filesystem.OpenFile(path, os.O_RDWR|os.O_APPEND|os.O_CREATE, 0777)
 	if err != nil {
 		return fmt.Errorf("Could not open file: %v", err)
 	}
