@@ -27,7 +27,9 @@ export default class HomePage extends Vue {
   // tslint:disable no-console
   public mounted() {
     this.fetchResponse = 'Loading...';
-    this.firebase.functions().httpsCallable('PublishEntry')()
+
+    // this.firebase.functions().httpsCallable('PublishEntry')()
+    this.publishEntry()
       .then(
         (resp) => {
           console.log(resp);
@@ -38,6 +40,12 @@ export default class HomePage extends Vue {
           this.fetchResponse = 'Error: ' + err.message;
         },
       );
+  }
+
+  private async publishEntry(): Promise<string> {
+    const token = await this.firebase.auth().currentUser.getIdToken();
+    console.log({ token });
+    return 'no-data';
   }
 }
 </script>
