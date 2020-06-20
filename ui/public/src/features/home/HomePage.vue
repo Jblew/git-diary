@@ -26,7 +26,7 @@ export default class HomePage extends Vue {
   // tslint:disable no-console
   public mounted() {
     this.fetchResponse = 'Loading...';
-    fetch('https://europe-west1-git-diary.cloudfunctions.net/PublishEntry')
+    fetch('/publish')
       .then(
         (resp) => {
           console.log(resp);
