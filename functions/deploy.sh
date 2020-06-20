@@ -10,8 +10,8 @@ if [ -z "${GCP_PROJECT_ID}" ]; then
     exit 1
 fi
 
-if [ -z "${GCP_PROJECT_REGION}" ]; then
-    echo "GCP_PROJECT_REGION env is not set"
+if [ -z "${GCP_FUNCTIONS_REGION}" ]; then
+    echo "GCP_FUNCTIONS_REGION env is not set"
     exit 1
 fi
 
@@ -24,7 +24,7 @@ gcloud services enable cloudfunctions.googleapis.com
 gcloud functions deploy PublishEntry \
   --trigger-http \
   --allow-unauthenticated \
-  --region "${GCP_PROJECT_REGION}" \
+  --region "${GCP_FUNCTIONS_REGION}" \
   --runtime go113 \
   --memory "1024MB"
 
