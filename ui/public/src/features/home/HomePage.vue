@@ -43,9 +43,13 @@ export default class HomePage extends Vue {
   }
 
   private async publishEntry(): Promise<string> {
-    const token = await this.firebase.auth().currentUser.getIdToken();
-    console.log({ token });
-    return 'no-data';
+    const token = await this.user.getIdToken();
+    const response = await fetch('/publish', {
+      headers: {
+        Authorization: `bearer ${token}`,
+      },
+    });
+    return response.text();
   }
 }
 </script>
