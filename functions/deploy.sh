@@ -23,7 +23,6 @@ gcloud config set project ${GCP_PROJECT_ID}
 gcloud services enable cloudfunctions.googleapis.com
 gcloud functions deploy PublishEntry \
   --trigger-http \
-  --allow-unauthenticated \
   --region "${GCP_FUNCTIONS_REGION}" \
   --runtime go113 \
   --memory "1024MB"

@@ -10,6 +10,7 @@ import (
 // PublishEntry publishes entry to git repo
 func PublishEntry(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, util.DebugHTTPRequest(r))
+	fmt.Println(w, application.Context)
 	// application.FirebaseAuth.GetUser()
 	// fmt.Fprintln(w, "Test")
 }
