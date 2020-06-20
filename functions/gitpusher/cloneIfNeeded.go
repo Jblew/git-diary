@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/go-git/go-git/v5"
-	"github.com/go-git/go-git/v5/storage/memory"
 	"github.com/go-git/go-git/v5/plumbing/transport/http"
+	"github.com/go-git/go-git/v5/storage/memory"
 )
 
 // cloneIfNeeded clones repo and retrives the history
@@ -18,7 +18,7 @@ func (gitpusher *GitPusher) cloneIfNeeded() error {
 
 		worktree, err := gitpusher.repo.Worktree()
 		if err != nil {
-			return err
+			return fmt.Errorf("Could not initialize worktree: %v", err)
 		}
 
 		gitpusher.repo = repo
@@ -33,7 +33,7 @@ func (gitpusher *GitPusher) doClone() (*git.Repository, error) {
 	// branches and fetching the objects, exactly as:
 
 	repo, err := git.Clone(memory.NewStorage(), gitpusher.fs, &git.CloneOptions{
-		URL: gitpusher.Config.RepositoryURL,
+		URL:  gitpusher.Config.RepositoryURL,
 		Auth: gitpusher.getCloneAuth(),
 	})
 	if err != nil {
@@ -43,7 +43,7 @@ func (gitpusher *GitPusher) doClone() (*git.Repository, error) {
 }
 
 func (gitpusher *GitPusher) getCloneAuth() *http.BasicAuth {
- 	return &http.BasicAuth{
+	return &http.BasicAuth{
 		Username: gitpusher.Config.AuthUsername,
 		Password: gitpusher.Config.AuthPassword,
 	}

@@ -1,6 +1,7 @@
 package gitpusher
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/go-git/go-git/v5"
@@ -16,7 +17,7 @@ func (gitpusher *GitPusher) commitFile(path string, commitMessage string) error 
 
 	_, err = gitpusher.worktree.Add(path)
 	if err != nil {
-		return err
+		return fmt.Errorf("Could not add file to worktree: %v", err)
 	}
 
 	_, err = gitpusher.worktree.Commit(commitMessage, &git.CommitOptions{
