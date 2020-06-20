@@ -29,6 +29,8 @@ func Init(config Config) (*App, error) {
 		CommitName:    config.CommitName,
 		CommitEmail:   config.CommitEmail,
 		CommitMessage: config.CommitMessage,
+		AuthUsername:  config.GitBasicAuthUsername,
+		AuthPassword:  config.GitBasicAuthPassword,
 	}
 	gitPusher, err := gitpusher.New(pusherConfig)
 	if err != nil {
