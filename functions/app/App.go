@@ -12,4 +12,5 @@ type App struct {
 	Firebase     *firebase.App
 	FirebaseAuth *firebaseAuth.Client
 	Context      context.Context
+	Config       Config
 }
