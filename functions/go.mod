@@ -7,6 +7,7 @@ require (
 	cloud.google.com/go/firestore v1.2.0
 	cloud.google.com/go/storage v1.9.0 // indirect
 	firebase.google.com/go v3.13.0+incompatible
+	github.com/Jblew/iot2firebase/functions v0.0.0-20200618164043-ef550854c207 // indirect
 	golang.org/x/net v0.0.0-20200602114024-627f9648deb9 // indirect
 	golang.org/x/sys v0.0.0-20200610111108-226ff32320da // indirect
 	golang.org/x/tools v0.0.0-20200612220849-54c614fe050c // indirect
