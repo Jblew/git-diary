@@ -7,6 +7,7 @@ func (gitpusher *GitPusher) createFileIfNotExists(path string) error {
 	} else if exists == false {
 		return gitpusher.createFile(path)
 	}
+	return nil
 }
 
 func (gitpusher *GitPusher) createFile(path string) error {
