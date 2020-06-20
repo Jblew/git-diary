@@ -14,7 +14,14 @@ func (gitpusher *GitPusher) cloneIfNeeded() error {
 		if err != nil {
 			return err
 		}
+
+		worktree, err := gitpusher.repo.Worktree()
+		if err != nil {
+			return err
+		}
+
 		gitpusher.repo = repo
+		gitpusher.worktree = worktree
 	}
 	return nil
 }

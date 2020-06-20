@@ -7,7 +7,8 @@ import (
 
 // GitPusher allows pushing to a git repository
 type GitPusher struct {
-	Config Config
-	repo   *git.Repository
-	fs     billy.Filesystem
+	Config   Config
+	repo     *git.Repository
+	worktree *git.Worktree
+	fs       billy.Filesystem
 }

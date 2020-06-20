@@ -14,17 +14,12 @@ func (gitpusher *GitPusher) commitFile(path string, commitMessage string) error 
 		return err
 	}
 
-	worktree, err := gitpusher.repo.Worktree()
+	_, err = gitpusher.worktree.Add(path)
 	if err != nil {
 		return err
 	}
 
-	_, err = worktree.Add(path)
-	if err != nil {
-		return err
-	}
-
-	_, err = worktree.Commit(commitMessage, &git.CommitOptions{
+	_, err = gitpusher.worktree.Commit(commitMessage, &git.CommitOptions{
 		Author: &object.Signature{
 			Name:  gitpusher.Config.CommitName,
 			Email: gitpusher.Config.CommitEmail,

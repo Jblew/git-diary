@@ -7,7 +7,7 @@ func (gitpusher *GitPusher) FetchMain() error {
 		return err
 	}
 
-	err = gitpusher.fetchBranch(gitpusher.Config.Branch)
+	err = gitpusher.pullBranch(gitpusher.Config.Branch)
 	if err != nil {
 		return err
 	}
