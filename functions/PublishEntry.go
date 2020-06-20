@@ -19,13 +19,13 @@ func PublishEntry(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	repoHistory, err := application.GitPusher.CloneAndGetHistory()
+	err = application.GitPusher.FetchMain()
 	if err != nil {
 		util.SendJSONError(w, fmt.Sprintf("Git pusher error: %v", err))
 		return
 	}
 
-	fmt.Fprintln(w, repoHistory)
+	fmt.Fprintln(w, "Fetch done")
 	// fmt.Println(w, application.Context)
 	// application.FirebaseAuth.GetUser()
 	// fmt.Fprintln(w, "Test")
