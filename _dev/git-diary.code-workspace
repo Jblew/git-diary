@@ -91,6 +91,7 @@
       "chrono": "cpp",
       "ctime": "cpp",
       "mutex": "cpp"
-    }
+    },
+    "tslint.autoFixOnSave": true,
   }
 }
