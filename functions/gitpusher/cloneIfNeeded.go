@@ -20,8 +20,8 @@ func (gitpusher *GitPusher) cloneIfNeeded() error {
 		}
 		log.Println("doClone done")
 
-		log.Println("Creating worktree")
-		worktree, err := gitpusher.repo.Worktree()
+		log.Printf("Creating worktre, gitpusher: %+v", gitpusher)
+		worktree, err := repo.Worktree()
 		if err != nil {
 			return fmt.Errorf("Could not initialize worktree: %v", err)
 		}
