@@ -27,7 +27,9 @@ func (gitpusher *GitPusher) pullBranch(branchName string) error {
 	})
 	log.Println("Pull done")
 
-	if err != nil {
+	if err == git.NoErrAlreadyUpToDate {
+		return nil
+	} else if err != nil {
 		return fmt.Errorf("Could not execute git worktree pull: %v", err)
 	}
 	return nil
