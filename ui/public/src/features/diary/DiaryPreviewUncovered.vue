@@ -1,8 +1,8 @@
 <template>
   <div class="diary-preview-uncovered">
-    <pre
-      >{{ formattedText }}
-    </pre>
+    <p v-for="lines in paragraphsLines" :key="lines">
+      <template v-for="line in lines"> {{ line }}<br :key="line" /> </template>
+    </p>
   </div>
 </template>
 <script lang="ts">
@@ -13,8 +13,8 @@ export default class DiaryPreviewUncovered extends Vue {
   @Prop({ required: true, type: String })
   public paragraphs!: string[];
 
-  get formattedText(): string {
-    return this.paragraphs.join('\n\n');
+  get paragraphsLines(): string[][] {
+    return this.paragraphs.map((p) => p.split('\n'));
   }
 }
 </script>
