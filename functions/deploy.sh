@@ -30,6 +30,7 @@ gcloud functions deploy PublishEntry \
   --trigger-http \
   --region "${GCP_FUNCTIONS_REGION}" \
   --runtime go113 \
+  --max-instances 1 \
   --memory "1024MB" &
 
 gcloud functions deploy ReadDiary \
@@ -44,8 +45,8 @@ gcloud functions deploy ResetLocalRepo \
   --trigger-http \
   --region "${GCP_FUNCTIONS_REGION}" \
   --runtime go113 \
-  --memory "1024MB" \
-  --max-instances 1 &
+  --max-instances 1 \
+  --memory "1024MB" &
 wait
 
 
