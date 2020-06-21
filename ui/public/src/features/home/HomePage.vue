@@ -9,8 +9,8 @@
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Inject } from 'vue-property-decorator';
-// import { functions } from 'firebase';
 import { DiaryPanel } from '@/features/diary';
+
 @Component({
   components: {
     DiaryPanel,
@@ -19,8 +19,6 @@ import { DiaryPanel } from '@/features/diary';
 export default class HomePage extends Vue {
   @Inject()
   public readonly firebase!: firebase.app.App;
-
-  public fetchResponse: string = '';
 
   public user: firebase.User = this.firebase.auth().currentUser!;
 

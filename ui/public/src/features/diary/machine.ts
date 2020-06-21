@@ -61,11 +61,7 @@ export const machine = Machine<Context, Schema, EventObject>({
     publishing: {
       entry: 'resetErrorText',
       invoke: {
-        src: async (ctx) => {
-          // tslint:disable no-console
-          console.log(`Publishing "${ctx.publishText}"`);
-          return 'A publish result';
-        },
+        src: 'publishEntry',
         onDone: {
           target: 'idle',
           actions: ['assignResultToDiary', 'clearPublishText'],
@@ -79,11 +75,7 @@ export const machine = Machine<Context, Schema, EventObject>({
     loading: {
       entry: 'resetErrorText',
       invoke: {
-        src: async (_, evt) => {
-          // tslint:disable no-console
-          console.log(`Loading`);
-          return 'A load result';
-        },
+        src: 'readDiary',
         onDone: {
           target: 'idle',
           actions: 'assignResultToDiary',
@@ -118,6 +110,7 @@ export const machine = Machine<Context, Schema, EventObject>({
     assignErrorMessage: assign<Context>({
       errorText: (_, { data }: any) => data.toString(),
     }),
+    // tslint:disable-next-line no-console
     logError: (_, { data }: any) => console.error(data.toString()),
   },
 });
