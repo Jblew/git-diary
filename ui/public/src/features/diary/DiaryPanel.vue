@@ -6,7 +6,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue, Inject, Provide } from 'vue-property-decorator';
+import { Component, Prop, Vue, Inject, Provide, ProvideReactive } from 'vue-property-decorator';
 import { functions } from 'firebase';
 import DiaryPublish from './DiaryPublish.vue';
 import DiaryPreview from './DiaryPreview.vue';
@@ -25,11 +25,15 @@ export default class DiaryPanel extends Vue {
   @Provide('machine')
   public machine: DiaryMachine = interpretMachine();
 
-  @Provide('state')
+  @ProvideReactive('state')
   public state: DiaryMachine['state'] = this.machine.initialState;
 
   public beforeMount() {
-    this.machine.onTransition((s) => this.state = s).start();
+    this.machine.onTransition((s) => {
+      this.state = s;
+      // tslint:disable no-console
+      console.log('State', s);
+    }).start();
   }
 }
 </script>

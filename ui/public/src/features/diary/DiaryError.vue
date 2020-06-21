@@ -4,14 +4,14 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue, Inject, Provide } from 'vue-property-decorator';
+import { Component, Prop, Vue, Inject, InjectReactive, Provide } from 'vue-property-decorator';
 import { DiaryMachine } from './machine';
 
 @Component
 export default class DiaryError extends Vue {
   @Inject('machine')
   public machine!: DiaryMachine;
-  @Inject('state')
+  @InjectReactive('state')
   public state!: DiaryMachine['state'];
 
   get errorText(): string {

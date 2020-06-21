@@ -14,7 +14,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Vue, Inject, Provide } from 'vue-property-decorator';
+import { Component, Prop, Vue, Inject, Provide, InjectReactive } from 'vue-property-decorator';
 import { DiaryMachine } from './machine';
 import DiaryPreviewCoverButton from './DiaryPreviewCoverButton.vue';
 
@@ -26,7 +26,7 @@ import DiaryPreviewCoverButton from './DiaryPreviewCoverButton.vue';
 export default class DiaryPreview extends Vue {
   @Inject('machine')
   public machine!: DiaryMachine;
-  @Inject('state')
+  @InjectReactive('state')
   public state!: DiaryMachine['state'];
 
   get diary(): string {
