@@ -1,4 +1,4 @@
-import { assign, Interpreter, Machine, EventObject } from 'xstate';
+import { assign, Interpreter, Machine, EventObject, DoneInvokeEvent } from 'xstate';
 
 const schema = {
   states: {
@@ -26,7 +26,8 @@ export type Events =
   | { type: 'COVER_DIARY' }
   | { type: 'UNCOVER_DIARY' }
   | { type: 'PUBLISH', entry: string }
-  | { type: 'RELOAD' };
+  | { type: 'RELOAD' }
+  | { type: 'HIDE_ERROR' };
 
 
 export const machine = Machine<Context, Schema, EventObject>({
@@ -50,13 +51,46 @@ export const machine = Machine<Context, Schema, EventObject>({
       on: {
         PUBLISH: 'pubishing',
         RELOAD: 'loading',
+        HIDE_ERROR: {
+          actions: 'resetErrorText',
+        },
       },
     },
     publishing: {
       entry: 'resetErrorText',
+      invoke: {
+        src: async (_, evt) => {
+          // tslint:disable no-console
+          console.log(`Publishing "${(evt as any).entry}"`);
+          return 'A publish result';
+        },
+        onDone: {
+          target: 'idle',
+          actions: 'assignResultToDiary',
+        },
+        onError: {
+          target: 'idle',
+          actions: ['assignErrorMessage', 'logError'],
+        },
+      },
     },
     loading: {
       entry: 'resetErrorText',
+      invoke: {
+        src: async (_, evt) => {
+          // tslint:disable no-console
+          console.log(`Loading "${(evt as any).entry}"`);
+          return 'A load result';
+        },
+        onDone: {
+          target: 'idle',
+          actions: 'assignResultToDiary',
+        },
+        onError: {
+          target: 'idle',
+          actions: ['assignErrorMessage', 'logError'],
+        },
+      },
     },
   },
 }, {
@@ -70,6 +104,13 @@ export const machine = Machine<Context, Schema, EventObject>({
     resetErrorText: assign<Context>({
       errorText: '',
     }),
+    assignResultToDiary: assign<Context>({
+      diary: (_, evt) => (evt as DoneInvokeEvent<string>).data,
+    }),
+    assignErrorMessage: assign<Context>({
+      errorText: (_, { data }: any) => data.toString(),
+    }),
+    logError: (_, { data }: any) => console.error(data.toString()),
   },
 });
 
