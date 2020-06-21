@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Please log in...</h1>
+    <h1>Fac auctorizes...</h1>
     <section id="firebaseui-auth-container"></section>
   </div>
 </template>

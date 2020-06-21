@@ -79,7 +79,7 @@ export const machine = Machine<Context, Schema, EventObject>({
       invoke: {
         src: async (_, evt) => {
           // tslint:disable no-console
-          console.log(`Loading "${(evt as any).entry}"`);
+          console.log(`Loading`);
           return 'A load result';
         },
         onDone: {

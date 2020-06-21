@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1>Preview panel</h1>
-    <div>loading={{ loading }}</div>
-    <div>covered={{ covered }}</div>
+    <div v-if="loading">Onerabas...</div>
+    <div>Occulta={{ covered }}</div>
     <diary-preview-cover-button
       :covered="covered"
       @uncover="uncover()"
       @cover="cover()"
     />
+    <button @click="reload()">Refice</button>
     <p>
       {{ diary }}
     </p>
@@ -47,6 +47,10 @@ export default class DiaryPreview extends Vue {
 
   public uncover() {
     this.machine.send('UNCOVER_DIARY');
+  }
+
+  public reload() {
+    this.machine.send('RELOAD');
   }
 }
 </script>

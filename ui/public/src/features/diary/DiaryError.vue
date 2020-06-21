@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span v-if="errorText" class="error">{{ errorText }}</span>
+    <span v-if="errorText" class="error">Error accideras: {{ errorText }}</span>
   </div>
 </template>
 <script lang="ts">

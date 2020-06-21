@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1>Logging out...</h1>
-    <a @click="backToHome()">Back to home</a>
+    <h1>Exibaris...</h1>
+    <a @click="backToHome()">Domi revertere</a>
   </div>
 </template>
 <script lang="ts">

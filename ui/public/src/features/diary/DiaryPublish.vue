@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>Publishing panel</h1>
-    <span>publishing={{ publishing }}</span>
+    <span v-if="publishing">Servabam...</span>
+    <textarea v-model="entry" placeholder="Quomodo te habes?"></textarea>
+    <button @click="publish()">Serva!</button>
   </div>
 </template>
 <script lang="ts">
@@ -19,6 +20,8 @@ export default class DiaryPreview extends Vue {
   public machine!: DiaryMachine;
   @InjectReactive('state')
   public state!: DiaryMachine['state'];
+
+  public entry: string = '';
 
   get diary(): string {
     return this.state.context.diary;

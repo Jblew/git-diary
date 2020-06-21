@@ -1,9 +1,9 @@
 <template>
   <button v-if="covered" @click="$emit('uncover')">
-    Uncover
+    Denuda
   </button>
   <button v-else @click="$emit('cover')">
-    Cover
+    Tege
   </button>
 </template>
 <script lang="ts">
