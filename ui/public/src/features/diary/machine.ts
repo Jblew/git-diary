@@ -49,7 +49,7 @@ export const machine = Machine<Context, Schema, EventObject>({
   states: {
     idle: {
       on: {
-        PUBLISH: 'pubishing',
+        PUBLISH: 'publishing',
         RELOAD: 'loading',
         HIDE_ERROR: {
           actions: 'resetErrorText',

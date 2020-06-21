@@ -10,7 +10,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, Inject } from 'vue-property-decorator';
 // import { functions } from 'firebase';
-import { DiaryPanel } from '@/features/diary'
+import { DiaryPanel } from '@/features/diary';
 @Component({
   components: {
     DiaryPanel,
@@ -24,7 +24,7 @@ export default class HomePage extends Vue {
 
   public user: firebase.User = this.firebase.auth().currentUser!;
 
-  // tslint:disable no-console
+  /*// tslint:disable no-console
   public mounted() {
     this.fetchResponse = 'Loading...';
 
@@ -50,7 +50,7 @@ export default class HomePage extends Vue {
       },
     });
     return response.text();
-  }
+  }*/
 }
 </script>
 
