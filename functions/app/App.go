@@ -2,6 +2,7 @@ package app
 
 import (
 	"context"
+	"sync"
 
 	firebase "firebase.google.com/go"
 	firebaseAuth "firebase.google.com/go/auth"
@@ -15,4 +16,5 @@ type App struct {
 	Context      context.Context
 	Config       Config
 	GitPusher    *gitpusher.GitPusher
+	Mutex        sync.Mutex
 }
