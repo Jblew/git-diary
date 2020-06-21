@@ -1,8 +1,8 @@
 <template>
-  <button v-if="covered" @click="$emit('uncover')">
+  <button v-hotkey="btnKeymap" v-if="covered" @click="$emit('uncover')">
     Denuda
   </button>
-  <button v-else @click="$emit('cover')">
+  <button v-hotkey="btnKeymap" v-else @click="$emit('cover')">
     Tege
   </button>
 </template>
@@ -14,6 +14,21 @@ import { DiaryMachine } from './machine';
 export default class DiaryPreview extends Vue {
   @Prop({ required: true, type: Boolean })
   public covered!: boolean;
+
+  get btnKeymap() {
+    return {
+      'cmd+1': this.toggle,
+      'alt+w': this.toggle,
+    };
+  }
+
+  public toggle() {
+    if (this.covered) {
+      this.$emit('uncover');
+    } else {
+      this.$emit('cover');
+    }
+  }
 }
 </script>
 

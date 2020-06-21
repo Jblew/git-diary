@@ -4,12 +4,14 @@ import { constructFirebaseApp } from './config';
 import { HomePage } from '@/features/home';
 import { LoginPage, LogoutPage, installFirebaseAuthHooksToVueRouter } from '@/features/auth';
 import VueRouter from 'vue-router';
+import VueHotkey from 'v-hotkey';
 import 'firebase/app';
 import 'firebase/auth';
 import 'firebase/functions';
 
 Vue.config.productionTip = false;
 Vue.use(VueRouter);
+Vue.use(VueHotkey);
 
 const firebase = constructFirebaseApp();
 

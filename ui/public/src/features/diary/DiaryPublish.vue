@@ -6,7 +6,11 @@
         placeholder="Quomodo te habes?"
       ></textarea>
       <div class="publish-button-container">
-        <button :disabled="!publishButtonEnabled" @click="publish()">
+        <button
+          v-hotkey="publishBtnKeymap"
+          :disabled="!publishButtonEnabled"
+          @click="publish()"
+        >
           Serva!
         </button>
       </div>
@@ -50,6 +54,12 @@ export default class DiaryPreview extends Vue {
 
   public publish() {
     this.machine.send('PUBLISH');
+  }
+
+  get publishBtnKeymap() {
+    return {
+      'shift+enter': this.publish,
+    };
   }
 }
 </script>
