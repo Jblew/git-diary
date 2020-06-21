@@ -11,8 +11,8 @@
     </div>
 
     <loading v-if="loading">Onerabas...</loading>
-    <diary-preview-covered v-else-if="covered" :diary="diary" />
-    <diary-preview-uncovered v-else :diary="diary" />
+    <diary-preview-covered v-else-if="covered" :paragraphs="paragraphs" />
+    <diary-preview-uncovered v-else :paragraphs="paragraphs" />
   </div>
 </template>
 <script lang="ts">
@@ -60,6 +60,13 @@ export default class DiaryPreview extends Vue {
   public reload() {
     this.machine.send('RELOAD');
   }
+
+  get paragraphs(): string[] {
+    return this.diary.split('\n\n')
+      .map((paragraph) => paragraph.trim())
+      .filter((paragraph) => paragraph.length > 0)
+      .reverse();
+  }
 }
 </script>
 
@@ -75,6 +82,10 @@ export default class DiaryPreview extends Vue {
   padding: 0.5rem;
   box-sizing: border-box;
   text-align: left;
+}
+
+.button-panel button {
+  font-size: 1.1em;
 }
 
 .button-panel .reload-button {

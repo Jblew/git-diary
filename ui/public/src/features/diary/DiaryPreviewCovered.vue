@@ -16,16 +16,10 @@ import { Component, Prop, Vue, Inject, Provide, InjectReactive } from 'vue-prope
 @Component
 export default class DiaryPreviewCovered extends Vue {
   @Prop({ required: true, type: String })
-  public diary!: string;
-
-  get paragraphs(): string[] {
-    return this.diary.split('\n\n');
-  }
+  public paragraphs!: string[];
 
   get paragraphHeights(): number[] {
-    const ps = this.paragraphs.map((paragraph) => paragraph.length / 5 + 2).map(Math.ceil);
-    console.log(ps);
-    return ps;
+    return this.paragraphs.map((paragraph) => paragraph.length / 3 + 2).map(Math.ceil);
   }
 }
 </script>
