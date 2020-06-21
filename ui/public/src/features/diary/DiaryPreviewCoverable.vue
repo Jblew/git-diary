@@ -34,7 +34,8 @@ export default class DiaryPreviewCoverable extends Vue {
 .diary-preview-coverable {
   width: 100%;
   text-align: left;
-  padding: 2rem;
-  padding-top: 1rem;
+  padding: 1rem;
+  padding-top: 0;
+  box-sizing: border-box;
 }
 </style>
