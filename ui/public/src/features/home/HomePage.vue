@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Ephemeris, {{ user.displayName }}</h1>
-    <router-link to="/logout">Log out</router-link>
+    <router-link to="/logout">Obliviscere me</router-link>
     <hr />
 
     <diary-panel />
