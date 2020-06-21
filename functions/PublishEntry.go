@@ -23,6 +23,8 @@ func PublishEntry(writer http.ResponseWriter, req *http.Request) {
 }
 
 func handlePublishEntry(w http.ResponseWriter, r *http.Request) (string, error) {
+	log.Println(util.DebugHTTPRequest(r))
+
 	err := verify(w, r)
 	if err != nil {
 		return "", err

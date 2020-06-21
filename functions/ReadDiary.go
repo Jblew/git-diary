@@ -2,6 +2,7 @@ package functions
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/Jblew/git-diary/functions/util"
@@ -20,6 +21,8 @@ func ReadDiary(writer http.ResponseWriter, req *http.Request) {
 }
 
 func handleReadDiary(w http.ResponseWriter, r *http.Request) (string, error) {
+	log.Println(util.DebugHTTPRequest(r))
+
 	err := verify(w, r)
 	if err != nil {
 		return "", err
