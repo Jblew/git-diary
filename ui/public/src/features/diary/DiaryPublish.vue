@@ -1,9 +1,12 @@
 <template>
   <div class="diary-publish">
-    <loading>Servabam...</loading>
-    <loading v-if="publishing">Servabam...</loading>
     <textarea v-model="publishText" placeholder="Quomodo te habes?"></textarea>
-    <button :disabled="!publishButtonEnabled" @click="publish()">Serva!</button>
+    <div class="publish-button-container">
+      <button :disabled="!publishButtonEnabled" @click="publish()">
+        Serva!
+      </button>
+    </div>
+    <loading v-if="publishing">Servabam...</loading>
   </div>
 </template>
 <script lang="ts">
@@ -49,5 +52,22 @@ export default class DiaryPreview extends Vue {
 <style scoped>
 .diary-publish {
   width: 100%;
+}
+
+.diary-publish textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 5rem;
+}
+
+.publish-button-container {
+  width: 100%;
+  text-align: right;
+}
+
+.publish-button-container button {
+  font-size: 1.5em;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 </style>
