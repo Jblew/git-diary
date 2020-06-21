@@ -44,7 +44,8 @@ gcloud functions deploy ResetLocalRepo \
   --trigger-http \
   --region "${GCP_FUNCTIONS_REGION}" \
   --runtime go113 \
-  --memory "1024MB" &
+  --memory "1024MB"
+  --max-instances 1 &
 wait
 
 
