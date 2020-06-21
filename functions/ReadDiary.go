@@ -12,8 +12,8 @@ import (
 func ReadDiary(writer http.ResponseWriter, req *http.Request) {
 	out, err := handleReadDiary(writer, req)
 	if err != nil {
-		util.SendJSONError(writer, fmt.Sprintf("%v", err))
 		writer.WriteHeader(500)
+		util.SendJSONError(writer, fmt.Sprintf("%v", err))
 		return
 	}
 

@@ -1,6 +1,7 @@
 package functions
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,15 +10,15 @@ import (
 )
 
 func verify(w http.ResponseWriter, r *http.Request) error {
-	userData, err := util.GetUserAuthDataFromRequest(r)
+	firebaseUser, err := util.AuthenticateFirebaseUser(context.Background(), r, application.FirebaseAuth)
 	if err != nil {
 		return err
 	}
-	if !application.IsUserAllowed(userData.Email) {
-		return fmt.Errorf("User '%s' is not alowed", userData.Email)
+	if !application.IsUserAllowed(firebaseUser.Email) {
+		return fmt.Errorf("User '%s' is not alowed", firebaseUser.Email)
 	}
 
-	log.Printf("User verified as %s\n", userData.Email)
+	log.Printf("User verified as %s\n", firebaseUser.Email)
 
 	return nil
 }

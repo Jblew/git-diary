@@ -6,6 +6,8 @@ import (
 	"time"
 )
 
+// FormatWithDate formats a string replacing date patterns with current datetime
+// Patterns: [yyyy], [mm], [dd], [hh], [ii], [ss]
 func FormatWithDate(format string) string {
 	out := format
 	usedTime := time.Now().UTC()
