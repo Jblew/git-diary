@@ -2,6 +2,7 @@ package functions
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 
@@ -26,7 +27,13 @@ func handlePublishEntry(w http.ResponseWriter, r *http.Request) (string, error) 
 		return "", err
 	}
 
-	out, err := pushEntryToRepo(w, r)
+	entryBin, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		return "", fmt.Errorf("Cannot read request body: %v", err)
+	}
+
+	entry := string(entryBin)
+	out, err := pushEntryToRepo(entry, w, r)
 	if err != nil {
 		return "", err
 	}
@@ -34,7 +41,7 @@ func handlePublishEntry(w http.ResponseWriter, r *http.Request) (string, error) 
 	return out, nil
 }
 
-func pushEntryToRepo(w http.ResponseWriter, r *http.Request) (string, error) {
+func pushEntryToRepo(entry string, w http.ResponseWriter, r *http.Request) (string, error) {
 	application.SyncLock()
 	defer application.SyncUnlock()
 
@@ -47,9 +54,11 @@ func pushEntryToRepo(w http.ResponseWriter, r *http.Request) (string, error) {
 
 	diaryFilePath := util.FormatWithDate(application.Config.DiaryFilePathFormat)
 	commitMessage := util.FormatWithDate(application.Config.CommitMessageFormat)
+	amendmentFormatted := application.FormatAmendment(entry)
+
 	err = application.GitPusher.AmendFile(gitpusher.AmendFileParams{
 		Path:          diaryFilePath,
-		Amendment:     "\n\n## test",
+		Amendment:     amendmentFormatted,
 		CommitMessage: commitMessage,
 	})
 	if err != nil {
