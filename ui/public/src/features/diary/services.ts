@@ -32,7 +32,7 @@ async function getAuthHeaders() {
   };
 }
 
-async function validateErrors(response: string) {
+function validateErrors(response: string) {
   let jsonObj: any = {};
   try {
     jsonObj = JSON.parse(response);
