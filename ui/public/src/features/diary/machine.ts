@@ -114,7 +114,7 @@ export const machine = Machine<Context, Schema, EventObject>({
   },
 });
 
-export type CampsiteWizardMachineInterpret = Interpreter<
+export type DiaryMachine = Interpreter<
   Context,
   Schema,
   Events

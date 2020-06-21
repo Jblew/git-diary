@@ -1,19 +1,19 @@
 <template>
   <div>
-    <h1>Welcome {{ user.displayName }}</h1>
+    <h1>Ephemeris, {{ user.displayName }}</h1>
     <router-link to="/logout">Log out</router-link>
     <hr />
-    <pre>
-      {{ fetchResponse }}
-    </pre>
+
+    <diary-panel />
   </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Inject } from 'vue-property-decorator';
-import { functions } from 'firebase';
-
+// import { functions } from 'firebase';
+import { DiaryPanel } from '@/features/diary'
 @Component({
   components: {
+    DiaryPanel,
   },
 })
 export default class HomePage extends Vue {
