@@ -11,8 +11,6 @@ import (
 
 // PublishEntry publishes entry to git repo
 func PublishEntry(writer http.ResponseWriter, req *http.Request) {
-	// application.ResetPusher()
-
 	out, err := handlePublishEntry(writer, req)
 	if err != nil {
 		util.SendJSONError(writer, fmt.Sprintf("%v", err))
