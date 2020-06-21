@@ -11,23 +11,20 @@
     </div>
 
     <loading v-if="loading">Onerabas...</loading>
-    <diary-preview-covered v-else-if="covered" :paragraphs="paragraphs" />
-    <diary-preview-uncovered v-else :paragraphs="paragraphs" />
+    <diary-preview-coverable v-else :paragraphs="paragraphs" :cover="covered" />
   </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Inject, Provide, InjectReactive } from 'vue-property-decorator';
 import { DiaryMachine } from './machine';
 import DiaryPreviewCoverButton from './DiaryPreviewCoverButton.vue';
-import DiaryPreviewCovered from './DiaryPreviewCovered.vue';
-import DiaryPreviewUncovered from './DiaryPreviewUncovered.vue';
+import DiaryPreviewCoverable from './DiaryPreviewCoverable.vue';
 import { Loading } from '@/components';
 
 @Component({
   components: {
     DiaryPreviewCoverButton,
-    DiaryPreviewCovered,
-    DiaryPreviewUncovered,
+    DiaryPreviewCoverable,
     Loading,
   },
 })
