@@ -14,9 +14,11 @@ export interface Context {
   diary: string;
   covered: boolean;
   errorText: string;
+  publishText: string;
 }
 
 const contextInitial: Context = {
+  publishText: '',
   diary: '',
   errorText: '',
   covered: true,
@@ -25,7 +27,8 @@ const contextInitial: Context = {
 export type Events =
   | { type: 'COVER_DIARY' }
   | { type: 'UNCOVER_DIARY' }
-  | { type: 'PUBLISH', entry: string }
+  | { type: 'PUBLISH' }
+  | { type: 'SET_PUBLISH_TEXT', text: string }
   | { type: 'RELOAD' }
   | { type: 'HIDE_ERROR' };
 
@@ -36,14 +39,13 @@ export const machine = Machine<Context, Schema, EventObject>({
   initial: 'idle',
   on: {
     COVER_DIARY: {
-      actions: assign<Context>({
-        covered: true,
-      }),
+      actions: 'setCovered',
     },
     UNCOVER_DIARY: {
-      actions: assign<Context>({
-        covered: false,
-      }),
+      actions: 'setUncovered',
+    },
+    SET_PUBLISH_TEXT: {
+      actions: 'setPublishText',
     },
   },
   states: {
@@ -59,14 +61,14 @@ export const machine = Machine<Context, Schema, EventObject>({
     publishing: {
       entry: 'resetErrorText',
       invoke: {
-        src: async (_, evt) => {
+        src: async (ctx) => {
           // tslint:disable no-console
-          console.log(`Publishing "${(evt as any).entry}"`);
+          console.log(`Publishing "${ctx.publishText}"`);
           return 'A publish result';
         },
         onDone: {
           target: 'idle',
-          actions: 'assignResultToDiary',
+          actions: ['assignResultToDiary', 'clearPublishText'],
         },
         onError: {
           target: 'idle',
@@ -103,6 +105,12 @@ export const machine = Machine<Context, Schema, EventObject>({
     }),
     resetErrorText: assign<Context>({
       errorText: '',
+    }),
+    setPublishText: assign<Context>({
+      publishText: (_, { text }: any) => text,
+    }),
+    clearPublishText: assign<Context>({
+      publishText: '',
     }),
     assignResultToDiary: assign<Context>({
       diary: (_, evt) => (evt as DoneInvokeEvent<string>).data,

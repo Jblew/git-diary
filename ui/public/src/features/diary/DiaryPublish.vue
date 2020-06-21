@@ -1,8 +1,8 @@
 <template>
   <div>
     <span v-if="publishing">Servabam...</span>
-    <textarea v-model="entry" placeholder="Quomodo te habes?"></textarea>
-    <button @click="publish()">Serva!</button>
+    <textarea v-model="publishText" placeholder="Quomodo te habes?"></textarea>
+    <button :disabled="!publishButtonEnabled" @click="publish()">Serva!</button>
   </div>
 </template>
 <script lang="ts">
@@ -21,26 +21,24 @@ export default class DiaryPreview extends Vue {
   @InjectReactive('state')
   public state!: DiaryMachine['state'];
 
-  public entry: string = '';
-
-  get diary(): string {
-    return this.state.context.diary;
+  get publishText(): string {
+    return this.state.context.publishText;
   }
 
-  get covered(): boolean {
-    return this.state.context.covered;
+  set publishText(text: string) {
+    this.machine.send({ type: 'SET_PUBLISH_TEXT', text });
   }
 
   get publishing(): boolean {
     return this.state.matches('publishing');
   }
 
-  public cover() {
-    this.machine.send('COVER_DIARY');
+  get publishButtonEnabled(): boolean {
+    return this.publishText.length > 0 && !this.publishing;
   }
 
-  public uncover() {
-    this.machine.send('UNCOVER_DIARY');
+  public publish() {
+    this.machine.send('PUBLISH');
   }
 }
 </script>
