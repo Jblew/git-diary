@@ -33,10 +33,14 @@ func handleReadDiary(w http.ResponseWriter, r *http.Request) (string, error) {
 }
 
 func readDiaryFileFromRepo(w http.ResponseWriter, r *http.Request) (string, error) {
+	application.SyncLock()
+	defer application.SyncUnlock()
+
 	err := application.GitPusher.FetchMain()
 	if err != nil {
 		return "", fmt.Errorf("Cannot fetch main branch: %v", err)
 	}
 
-	return application.GitPusher.ReadFile(application.Config.DiaryFilePath)
+	diaryFilePath := util.FormatWithDate(application.Config.DiaryFilePathFormat)
+	return application.GitPusher.ReadFile(diaryFilePath)
 }

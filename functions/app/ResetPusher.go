@@ -14,7 +14,6 @@ func (app *App) ResetPusher() error {
 		Branch:        config.BranchName,
 		CommitName:    config.CommitName,
 		CommitEmail:   config.CommitEmail,
-		CommitMessage: config.CommitMessage,
 		AuthUsername:  config.GitBasicAuthUsername,
 		AuthPassword:  config.GitBasicAuthPassword,
 	}

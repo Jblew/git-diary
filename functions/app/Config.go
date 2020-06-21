@@ -10,6 +10,6 @@ type Config struct {
 	BranchName           string
 	CommitName           string
 	CommitEmail          string
-	CommitMessage        string
-	DiaryFilePath        string
+	CommitMessageFormat  string
+	DiaryFilePathFormat  string
 }

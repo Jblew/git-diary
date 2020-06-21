@@ -8,5 +8,4 @@ type Config struct {
 	Branch        string
 	CommitName    string
 	CommitEmail   string
-	CommitMessage string
 }

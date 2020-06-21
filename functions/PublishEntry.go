@@ -35,6 +35,9 @@ func handlePublishEntry(w http.ResponseWriter, r *http.Request) (string, error) 
 }
 
 func pushEntryToRepo(w http.ResponseWriter, r *http.Request) (string, error) {
+	application.SyncLock()
+	defer application.SyncUnlock()
+
 	err := application.GitPusher.FetchMain()
 	if err != nil {
 		return "", fmt.Errorf("Cannot fetch main branch: %v", err)
@@ -42,15 +45,17 @@ func pushEntryToRepo(w http.ResponseWriter, r *http.Request) (string, error) {
 
 	log.Println("Repository fetch successfull")
 
+	diaryFilePath := util.FormatWithDate(application.Config.DiaryFilePathFormat)
+	commitMessage := util.FormatWithDate(application.Config.CommitMessageFormat)
 	err = application.GitPusher.AmendFile(gitpusher.AmendFileParams{
-		Path:          application.Config.DiaryFilePath,
+		Path:          diaryFilePath,
 		Amendment:     "\n\n## test",
-		CommitMessage: application.Config.CommitMessage,
+		CommitMessage: commitMessage,
 	})
 	if err != nil {
 		return "", fmt.Errorf("Cannot amend to branch: %v", err)
 	}
 	log.Println("Repository file amended")
 
-	return application.GitPusher.ReadFile(application.Config.DiaryFilePath)
+	return application.GitPusher.ReadFile(diaryFilePath)
 }

@@ -19,6 +19,9 @@ func ResetLocalRepo(writer http.ResponseWriter, req *http.Request) {
 }
 
 func handleResetLocalRepo(w http.ResponseWriter, r *http.Request) (string, error) {
+	application.SyncLock()
+	defer application.SyncUnlock()
+
 	err := verify(w, r)
 	if err != nil {
 		return "", err
