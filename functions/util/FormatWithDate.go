@@ -10,7 +10,7 @@ func FormatWithDate(format string) string {
 	out := format
 	usedTime := time.Now().UTC()
 	out = strings.ReplaceAll(out, "[yyyy]", fmt.Sprintf("%d", usedTime.Year()))
-	out = strings.ReplaceAll(out, "[mm]", usedTime.Month().String())
-	out = strings.ReplaceAll(out, "[dd]", fmt.Sprintf("%d", usedTime.Day()))
+	out = strings.ReplaceAll(out, "[mm]", fmt.Sprintf("%02d", usedTime.Month()))
+	out = strings.ReplaceAll(out, "[dd]", fmt.Sprintf("%02d", usedTime.Day()))
 	return out
 }

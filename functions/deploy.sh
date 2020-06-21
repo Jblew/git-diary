@@ -24,6 +24,7 @@ go build *.go
 gcloud config set project ${GCP_PROJECT_ID}
 gcloud services enable cloudfunctions.googleapis.com
 
+# Deploy functions in parallel
 gcloud functions deploy PublishEntry \
   --allow-unauthenticated \
   --trigger-http \
