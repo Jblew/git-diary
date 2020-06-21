@@ -10,12 +10,7 @@ import (
 
 // AmendFile appends to file and commits the changes
 func (gitpusher *GitPusher) commitFile(path string, commitMessage string) error {
-	err := gitpusher.appendToFile(path, commitMessage)
-	if err != nil {
-		return err
-	}
-
-	_, err = gitpusher.worktree.Add(path)
+	_, err := gitpusher.worktree.Add(path)
 	if err != nil {
 		return fmt.Errorf("Could not add file to worktree: %v", err)
 	}
