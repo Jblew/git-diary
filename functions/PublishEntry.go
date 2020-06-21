@@ -33,6 +33,10 @@ func handlePublishEntry(w http.ResponseWriter, r *http.Request) (string, error) 
 	}
 
 	entry := string(entryBin)
+	if len(entry) == 0 {
+		return "", fmt.Errorf("You must provide entry to publish as text in request body")
+	}
+
 	out, err := pushEntryToRepo(entry, w, r)
 	if err != nil {
 		return "", err
