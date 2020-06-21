@@ -1,8 +1,6 @@
 <template>
   <div>
-    <h1>Ephemeris, {{ user.displayName }}</h1>
-    <router-link to="/logout">Obliviscere me</router-link>
-    <hr />
+    <home-header />
 
     <diary-panel />
   </div>
@@ -10,10 +8,12 @@
 <script lang="ts">
 import { Component, Prop, Vue, Inject } from 'vue-property-decorator';
 import { DiaryPanel } from '@/features/diary';
+import HomeHeader from './HomeHeader.vue';
 
 @Component({
   components: {
     DiaryPanel,
+    HomeHeader,
   },
 })
 export default class HomePage extends Vue {

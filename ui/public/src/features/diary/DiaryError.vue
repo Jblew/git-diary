@@ -1,13 +1,18 @@
 <template>
   <div>
-    <span v-if="errorText" class="error">Error accideras: {{ errorText }}</span>
+    <error v-if="errorText">Error accideras: {{ errorText }}</error>
   </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Inject, InjectReactive, Provide } from 'vue-property-decorator';
 import { DiaryMachine } from './machine';
+import { Error } from '@/components';
 
-@Component
+@Component({
+  components: {
+    Error,
+  },
+})
 export default class DiaryError extends Vue {
   @Inject('machine')
   public machine!: DiaryMachine;
@@ -21,7 +26,4 @@ export default class DiaryError extends Vue {
 </script>
 
 <style scoped>
-.error {
-  color: red;
-}
 </style>

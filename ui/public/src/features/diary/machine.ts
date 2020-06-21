@@ -36,7 +36,7 @@ export type Events =
 export const machine = Machine<Context, Schema, EventObject>({
   id: 'diaryMachine',
   context: contextInitial,
-  initial: 'idle',
+  initial: 'loading',
   on: {
     COVER_DIARY: {
       actions: 'setCovered',
