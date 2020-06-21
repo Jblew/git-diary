@@ -10,6 +10,6 @@ export DIARY_REPOSITORY_URL="https://github.com/doctor-lewandowski/ephemeris.git
 export BRANCH_NAME="master"
 export DIARY_FILE_PATH_FORMAT="ephemeris-[yyyy]/[mm].md"
 export COMMIT_NAME="Jędrzej Lewandowski"
-export COMMIT_EMAIL="jedrzejblew@gmail.com"
+export COMMIT_EMAIL="jedrzej@lewandowski.doctor"
 export COMMIT_MESSAGE_FORMAT="Introitus ad ephemeridis [yyyy]/[mm]/[dd]"
 export DIARY_ENTRY_CAPTION_FORMAT="\n> *[yyyy]/[mm]/[dd] [hh]:[ii]:[ss] UTC*\n\n"
