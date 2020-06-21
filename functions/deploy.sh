@@ -31,14 +31,14 @@ gcloud functions deploy PublishEntry \
   --region "${GCP_FUNCTIONS_REGION}" \
   --runtime go113 \
   --max-instances 1 \
-  --memory "1024MB" &
+  --memory "2048MB" &
 
 gcloud functions deploy ReadDiary \
   --allow-unauthenticated \
   --trigger-http \
   --region "${GCP_FUNCTIONS_REGION}" \
   --runtime go113 \
-  --memory "1024MB" &
+  --memory "2048MB" &
 
 gcloud functions deploy ResetLocalRepo \
   --allow-unauthenticated \
@@ -46,7 +46,7 @@ gcloud functions deploy ResetLocalRepo \
   --region "${GCP_FUNCTIONS_REGION}" \
   --runtime go113 \
   --max-instances 1 \
-  --memory "1024MB" &
+  --memory "2048MB" &
 wait
 
 
