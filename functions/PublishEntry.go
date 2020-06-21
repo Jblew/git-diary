@@ -15,6 +15,7 @@ func PublishEntry(writer http.ResponseWriter, req *http.Request) {
 	out, err := handlePublishEntry(writer, req)
 	if err != nil {
 		util.SendJSONError(writer, fmt.Sprintf("%v", err))
+		writer.WriteHeader(500)
 		return
 	}
 
