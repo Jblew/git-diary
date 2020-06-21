@@ -9,7 +9,7 @@
 import { Component, Prop, Vue, Inject, Provide, InjectReactive } from 'vue-property-decorator';
 
 @Component
-export default class DiaryPreviewCovered extends Vue {
+export default class DiaryPreviewUncovered extends Vue {
   @Prop({ required: true, type: String })
   public paragraphs!: string[];
 
