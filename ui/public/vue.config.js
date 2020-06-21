@@ -9,6 +9,11 @@ module.exports = {
         pathRewrite: { "^/publish": "/PublishEntry" },
         target: "https://us-central1-git-diary.cloudfunctions.net/",
       },
+      "^/read": {
+        logLevel: "debug",
+        pathRewrite: { "^/read": "/ReadDiary" },
+        target: "https://us-central1-git-diary.cloudfunctions.net/",
+      },
     },
   },
 };

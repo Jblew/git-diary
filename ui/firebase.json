@@ -11,9 +11,15 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [ {
-      "source": "/publish",
-      "function": "PublishEntry"
-    } ]
+    "rewrites": [
+      {
+        "source": "/publish",
+        "function": "PublishEntry"
+      },
+      {
+        "source": "/read",
+        "function": "ReadDiary"
+      }
+    ]
   }
 }
