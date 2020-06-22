@@ -42,6 +42,8 @@ firebase.google.com/go v3.13.0+incompatible/go.mod h1:xlah6XbEyW6tbfSklcfe5FHJIw
 github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
+github.com/Jblew/go-firebase-auth-in-gcp-functions v0.0.0-20200622134934-00ff4661376c h1:cTWN0F8k8QP/ZeDQfBlMxq8fRv07yDk7KK0xVyPOCnE=
+github.com/Jblew/go-firebase-auth-in-gcp-functions v0.0.0-20200622134934-00ff4661376c/go.mod h1:4FFBEl4rACfWNGBGk+0q51xA89kBbSIja56wgyV3QjA=
 github.com/Jblew/iot2firebase v0.0.0-20200618164043-ef550854c207 h1:JVpGb/kZeperX9kzQV9yd3s4+W186tQL+M9TEhBx6As=
 github.com/Jblew/iot2firebase/functions v0.0.0-20200618164043-ef550854c207 h1:SqPQIBPTrWxfjp4lPmr55YYLVhrN6hr5LS69BHk1N2g=
 github.com/Jblew/iot2firebase/functions v0.0.0-20200618164043-ef550854c207/go.mod h1:ZuMnP9ATk9/XHt/kbt8itjJbebxqEhcXXEnDnbGUy8M=

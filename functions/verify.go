@@ -6,11 +6,11 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/Jblew/git-diary/functions/util"
+	functionsAuth "github.com/Jblew/go-firebase-auth-in-gcp-functions"
 )
 
 func verify(w http.ResponseWriter, r *http.Request) error {
-	firebaseUser, err := util.AuthenticateFirebaseUser(context.Background(), r, application.FirebaseAuth)
+	firebaseUser, err := functionsAuth.AuthenticateFirebaseUser(context.Background(), r, application.FirebaseAuth)
 	if err != nil {
 		return err
 	}
