@@ -1,5 +1,10 @@
 <template>
-  <div class="diary-preview-coverable">
+  <div
+    :class="{
+      'diary-preview-coverable': true,
+      'diary-preview-coverable-covered': cover
+    }"
+  >
     <p v-for="lines in paragraphsLines" :key="lines">
       <template v-for="line in lines"> {{ line }}<br :key="line" /> </template>
     </p>
@@ -37,5 +42,10 @@ export default class DiaryPreviewCoverable extends Vue {
   padding: 1rem;
   padding-top: 0;
   box-sizing: border-box;
+}
+
+.diary-preview-coverable-covered p {
+  letter-spacing: -0.6em;
+  word-spacing: 1.2em;
 }
 </style>
