@@ -11,7 +11,7 @@
     "core-js": "^3.6.5",
     "firebase": "^7.15.1",
     "firebaseui": "^4.5.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "v-hotkey": "^0.8.0",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
