@@ -1,6 +1,6 @@
 <template>
   <div>
-    <home-header />
+    <authenticated-header />
 
     <diary-panel />
   </div>
@@ -8,12 +8,13 @@
 <script lang="ts">
 import { Component, Prop, Vue, Inject } from 'vue-property-decorator';
 import { DiaryPanel } from '@/features/diary';
+import { AuthenticatedHeader } from '@/components';
 import HomeHeader from './HomeHeader.vue';
 
 @Component({
   components: {
     DiaryPanel,
-    HomeHeader,
+    AuthenticatedHeader,
   },
 })
 export default class HomePage extends Vue {
