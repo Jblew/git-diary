@@ -1,0 +1,7 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "indexes.json",
+    "predeploy": ["node firestore.rules.gen.js"]
+  }
+}

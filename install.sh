@@ -8,6 +8,10 @@ echo "# Deploying functions"
 ./functions/deploy.sh
 echo "# Functions deploy done"
 
+echo "# Deploying firestore"
+./firestore/deploy.sh
+echo "# Functions firestore done"
+
 echo "# Deploying ui"
 ./ui/deploy.sh
 echo "# Functions ui done"
