@@ -2,22 +2,22 @@
   <div>
     <authenticated-header />
 
-    <diary-panel />
+    <timetracking-panel />
   </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Inject } from 'vue-property-decorator';
-import { DiaryPanel } from '@/features/diary';
+import TimetrackingPanel from './TimetrackingPanel.vue';
 import { AuthenticatedHeader } from '@/components';
 import HomeHeader from './HomeHeader.vue';
 
 @Component({
   components: {
-    DiaryPanel,
+    TimetrackingPanel,
     AuthenticatedHeader,
   },
 })
-export default class HomePage extends Vue {
+export default class TimetrackingPage extends Vue {
   @Inject()
   public readonly firebase!: firebase.app.App;
 
