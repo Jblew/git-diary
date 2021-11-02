@@ -6,13 +6,20 @@
     <div class="logout-link">
       <router-link to="/logout">Obliviscere me</router-link>
     </div>
+
+    <menu-bar />
   </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue, Inject } from 'vue-property-decorator';
+import MenuBar from './MenuBar.vue'
 
-@Component
-export default class HomePage extends Vue {
+@Component({
+  components: {
+    MenuBar,
+  },
+})
+export default class AuthenticatedHeader extends Vue {
   @Inject()
   public readonly firebase!: firebase.app.App;
 
