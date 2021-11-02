@@ -11,6 +11,9 @@
     },
     {
       "path": "../ui/public"
+    },
+    {
+      "path": "../assistant_actions"
     }
   ],
   "settings": {
